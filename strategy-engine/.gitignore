@@ -5,6 +5,7 @@ env/
 
 # Python bytecode and caches
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.so
@@ -12,6 +13,7 @@ __pycache__/
 
 # Install / build
 *.egg-info/
+**/*.egg-info/
 .eggs/
 *.egg
 dist/
