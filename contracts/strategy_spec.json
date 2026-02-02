@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "generated_at_utc": "2026-02-02T11:17:16Z",
+  "period_4h_end_utc": "2026-02-02T08:00:00Z",
+  "leverage_allowed": false,
+  "target_weights": {
+    "USDT": 0.5,
+    "SOL": 0.2,
+    "WBTC": 0.15,
+    "WETH": 0.15
+  }
+}

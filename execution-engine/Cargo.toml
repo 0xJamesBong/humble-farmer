@@ -1,6 +1,19 @@
 [package]
 name = "execution-engine"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 [dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+solana-client = "2"
+solana-sdk = "2"
+reqwest = { version = "0.12", features = ["json"] }
+anyhow = "1"
+thiserror = "1"
+base64 = "0.22"
+tokio = { version = "1", features = ["full"] }
+spl-token = "5"
+solana-account-decoder = "2"
+pico-args = "0.5"
+bincode = "1"
