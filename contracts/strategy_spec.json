@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "generated_at_utc": "2026-02-02T11:17:16Z",
-  "period_4h_end_utc": "2026-02-02T08:00:00Z",
+  "generated_at_utc": "2026-02-04T13:40:15Z",
+  "period_4h_end_utc": "2026-02-04T12:00:00Z",
   "leverage_allowed": false,
   "target_weights": {
     "USDT": 0.5,
