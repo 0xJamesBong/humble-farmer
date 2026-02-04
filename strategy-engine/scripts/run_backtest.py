@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run backtest with CCXT data and export strategy_spec.json to contracts/."""
+"""Run backtest with CCXT data and export strategy_spec.json (v2 orders) to contracts/."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ import argparse
 from pathlib import Path
 
 from strategy_engine.backtest import run_backtest
-from strategy_engine.export import export_strategy_spec
+from strategy_engine.export import export_strategy_spec_v2
 
 
 DEFAULT_EXCHANGE = "binance"
@@ -15,7 +15,7 @@ DEFAULT_SYMBOLS = ["BTC/USDT", "ETH/USDT", "SOL/USDT"]
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Backtest and export strategy_spec.json")
+    parser = argparse.ArgumentParser(description="Backtest and export strategy_spec.json (v2 orders)")
     parser.add_argument(
         "--exchange",
         default=DEFAULT_EXCHANGE,
@@ -46,19 +46,19 @@ def main() -> None:
     )
     args = parser.parse_args()
     symbols = [s.strip() for s in args.symbols.split(",") if s.strip()]
-    weights, period_end = run_backtest(
+    orders, period_end = run_backtest(
         exchange_id=args.exchange,
         symbols=symbols,
         since_ts_ms=args.since,
         limit=args.limit,
     )
-    path = export_strategy_spec(
-        target_weights=weights,
+    path = export_strategy_spec_v2(
+        orders=orders,
         period_4h_end_utc=period_end,
         leverage_allowed=False,
         output_path=args.output,
     )
-    print(f"Exported strategy_spec.json to {path}")
+    print(f"Exported strategy_spec.json (v2, {len(orders)} orders) to {path}")
 
 
 if __name__ == "__main__":

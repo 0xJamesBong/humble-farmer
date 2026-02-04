@@ -1,19 +1,20 @@
 # binance-execution-engine
 
-Python package that reads `contracts/strategy_spec.json` and executes the target portfolio on **Binance spot** via CCXT (market orders). Part of the humble-farmer monorepo; strategy is produced by [strategy-engine](../strategy-engine/), this engine only executes.
+Python package that reads `contracts/strategy_spec.json` and executes on **Binance spot** via CCXT (market orders). Part of the humble-farmer monorepo; strategy is produced by [strategy-engine](../strategy-engine/), this engine only executes.
 
 ## Contract
 
-Reads **strategy_spec.json** from repo root `contracts/` (or path given by `--strategy-spec`). The spec contains `target_weights` (e.g. USDT, SOL, WBTC, WETH). This engine maps them to Binance pairs (SOL/USDT, BTC/USDT, ETH/USDT) and rebalances.
+Reads **strategy_spec.json** from repo root `contracts/` (or path given by `--strategy-spec`). Supports two spec versions:
+
+- **v1**: `target_weights` (e.g. USDT, SOL, WBTC, WETH). Engine maps them to Binance pairs and rebalances portfolio to target weights.
+- **v2**: `orders` array with discrete trades: `asset`, `side`, `entry`, `stop_loss`, `take_profit`, `size`. Engine places entry market orders for each order; SL/TP are in the spec for reference (execution is entry-only unless extended).
 
 ## API keys
 
-Set environment variables (do not commit):
+Set `BINANCE_API_KEY` and `BINANCE_API_SECRET`. Either:
 
-- `BINANCE_API_KEY`
-- `BINANCE_API_SECRET`
-
-Optional: put them in a `.env` file at repo root (gitignored). This package does not load `.env` by default; use `python-dotenv` in your own wrapper if needed.
+- **Environment**: `export BINANCE_API_KEY=...` and `export BINANCE_API_SECRET=...`
+- **Repo root .env**: Copy [.env.example](../.env.example) to `.env` at the repo root and fill in your keys. The script loads `repo_root/.env` automatically via python-dotenv. Do not commit `.env`.
 
 ## Usage
 
@@ -42,7 +43,5 @@ PYTHONPATH=binance-execution-engine python binance-execution-engine/scripts/run_
 
 ## Flow
 
-1. Load strategy_spec.json and get target_weights.
-2. Fetch Binance spot balances and prices (CCXT).
-3. Compute rebalance orders (target vs current weights).
-4. Dry-run: print orders; execute: place market buy/sell orders.
+- **v1**: Load strategy_spec → target_weights → fetch balances/prices → compute rebalance orders → dry-run or place market orders.
+- **v2**: Load strategy_spec → orders → map asset/side/size to pairs → dry-run or place market entry orders (one per order in the list).

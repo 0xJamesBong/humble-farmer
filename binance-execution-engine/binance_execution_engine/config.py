@@ -33,5 +33,43 @@ def load_strategy_spec(path: Path | None = None) -> Dict[str, Any]:
 
 
 def get_target_weights(spec: Dict[str, Any]) -> Dict[str, float]:
-    """Extract target_weights from spec. Keys: USDT, SOL, WBTC, WETH."""
+    """Extract target_weights from spec (v1). Keys: USDT, SOL, WBTC, WETH."""
     return dict(spec.get("target_weights", {}))
+
+
+def get_spec_version(spec: Dict[str, Any]) -> int:
+    """Strategy spec version: 1 = target_weights, 2 = orders."""
+    return int(spec.get("version", 1))
+
+
+def asset_to_pair(asset: str) -> str:
+    """Map asset (e.g. SOL) to CCXT pair. Uses SYMBOL_TO_PAIR or fallback ASSET/USDT."""
+    return SYMBOL_TO_PAIR.get(asset) or f"{asset}/USDT"
+
+
+def _normalize_side(side: str) -> str:
+    """Normalize side to CCXT: long -> buy, short -> sell; buy/sell unchanged."""
+    if side in ("long", "buy"):
+        return "buy"
+    if side in ("short", "sell"):
+        return "sell"
+    return "buy"
+
+
+def get_orders_v2(spec: Dict[str, Any]) -> list:
+    """
+    Extract orders from strategy_spec v2. Returns list of dicts with side, symbol, amount
+    for execution (compatible with rebalance.Order shape: side, symbol, amount).
+    Accepts side as "buy"/"sell" or "long"/"short".
+    """
+    raw = spec.get("orders", [])
+    out = []
+    for o in raw:
+        asset = o.get("asset", "")
+        pair = asset_to_pair(asset)
+        out.append({
+            "side": _normalize_side(o.get("side", "buy")),
+            "symbol": pair,
+            "amount": float(o.get("size", 0)),
+        })
+    return out
