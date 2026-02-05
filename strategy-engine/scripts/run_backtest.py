@@ -10,10 +10,9 @@ import subprocess
 import sys
 from pathlib import Path
 
-from strategy_engine.backtest import run_backtest
-from strategy_engine.export import export_strategy_spec_v2
-from strategy_engine.report import generate_report, plot_pnl
-from strategy_engine.strategy_loader import load_strategy, strategies_dir
+from strategy_engine.analysis import generate_report, plot_pnl, run_backtest
+from strategy_engine.io import export_strategy_spec_v2
+from strategy_engine.strategy import load_strategy, strategies_dir
 
 
 DEFAULT_EXCHANGE = "binance"

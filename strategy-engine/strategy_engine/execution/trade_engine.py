@@ -14,7 +14,7 @@ from typing import List, Literal, Optional, Tuple
 
 import pandas as pd
 
-from .types import Order, TradeSetup
+from ..core.types import Order, TradeSetup
 
 
 @dataclass

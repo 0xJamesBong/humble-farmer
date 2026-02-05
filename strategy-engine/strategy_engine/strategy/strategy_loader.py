@@ -13,14 +13,14 @@ except ImportError:
     _HAS_YAML = False
 
 
-def _package_root() -> Path:
-    """Strategy-engine package root (directory containing strategy_engine/)."""
-    return Path(__file__).resolve().parents[1]
+def _strategy_engine_root() -> Path:
+    """strategy-engine package root (directory containing strategies/ and strategy_engine/)."""
+    return Path(__file__).resolve().parents[2]
 
 
 def strategies_dir() -> Path:
     """Default strategies directory at strategy-engine/strategies/."""
-    return _package_root() / "strategies"
+    return _strategy_engine_root() / "strategies"
 
 
 def load_strategy(path: Path) -> Dict[str, Any]:

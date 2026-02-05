@@ -7,7 +7,7 @@ from pathlib import Path
 from datetime import datetime, timezone
 from typing import Dict, List
 
-from .types import Order
+from ..core.types import Order
 
 
 def repo_root() -> Path:

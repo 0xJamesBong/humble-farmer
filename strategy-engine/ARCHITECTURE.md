@@ -9,7 +9,7 @@ Mid-frequency trade engine: setup detection → trade state machine → orders. 
 **Bar-by-bar loop (backtest):**
 
 ```
-fetch_4h_candles (data.py)
+fetch_4h_candles (data/data.py)
     → for each bar i from warmup to end:
           df_slice = df.iloc[:i+1], bar = df.iloc[i]
           setup = detect_setup(df_slice, symbol)   # or detect_event + risk + sizing when strategy_config set
@@ -27,21 +27,21 @@ fetch_4h_candles (data.py)
 
 | Module | Responsibility |
 |--------|----------------|
-| **data.py** | Fetch 4H OHLCV via CCXT. Returns `symbol → DataFrame` (timestamp, open, high, low, close, volume). Research-only; no execution. |
-| **types.py** | Primitives: `EventCandidate` (detector output: asset, side, entry_price, features); `TradeSetup` (proposal: asset, side, entry, stop_loss, take_profit, invalidation, confidence, size); `Order` (execution contract; serialized to strategy_spec v2). |
-| **setups.py** | Setup detectors: price history → `Optional[TradeSetup]` or `Optional[EventCandidate]`. `detect_setup(df, symbol)` returns full TradeSetup (backward compat). `detect_event(df, symbol, detector_id, **params)` returns EventCandidate from **indicator registry**. Registry: `detector_id → (df, symbol, **params) → Optional[EventCandidate]`. |
-| **risk.py** | `compute_stop_tp(entry_price, side, bar_or_df, risk_config)` → (stop_loss, take_profit). Config: `pct` or `atr_mult`. Pure function. |
-| **sizing.py** | `compute_size(sizing_config, account_value?, volatility?)` → size. Config: `fixed` or `fixed_risk`. Pure function. |
-| **trade_engine.py** | Trade state machine (FLAT / OPEN). **Fill rule (same bar):** SL checked before TP. `_exit_reason(bar, position)`, `initial_state()`, `enter_trade(setup)`, `manage_trade(state, bar)`. All enter/exit decisions live here. |
-| **backtest.py** | Bar-by-bar loop: fetch candles → for each bar (warmup to end) run detect_setup or (detect_event + risk + sizing → TradeSetup), then state machine; record fills and completed trades to **ledger**. Returns `(orders_last_bar, period_end, ledger)`. |
-| **ledger.py** | Ledger: fills (timestamp, asset, side, price, size, fee, exit_reason), completed_trades (entry_ts, exit_ts, asset, side, entry_price, exit_price, size, pnl_gross, fees). `to_dict()` for JSON export; `total_pnl_net`. |
-| **report.py** | Backtest reporting: compute performance metrics + equity curve from ledger. Outputs overall + per-asset metrics. |
-| **strategy_loader.py** | Load strategy config from YAML/JSON: `name`, `symbol`, `timeframe`, `entry` (detector_id + params), `risk`, `sizing`. `strategies_dir()` = strategy-engine/strategies/. |
-| **export.py** | Write `strategy_spec.json` to repo `contracts/`. v1: target_weights (legacy). v2: `orders` array; used by backtest. |
+| **data/data.py** | Fetch 4H OHLCV via CCXT. Returns `symbol → DataFrame` (timestamp, open, high, low, close, volume). Research-only; no execution. |
+| **core/types.py** | Primitives: `EventCandidate` (detector output: asset, side, entry_price, features); `TradeSetup` (proposal: asset, side, entry, stop_loss, take_profit, invalidation, confidence, size); `Order` (execution contract; serialized to strategy_spec v2). |
+| **strategy/setups.py** | Setup detectors: price history → `Optional[TradeSetup]` or `Optional[EventCandidate]`. `detect_setup(df, symbol)` returns full TradeSetup (backward compat). `detect_event(df, symbol, detector_id, **params)` returns EventCandidate from **indicator registry**. Registry: `detector_id → (df, symbol, **params) → Optional[EventCandidate]`. |
+| **strategy/risk.py** | `compute_stop_tp(entry_price, side, bar_or_df, risk_config)` → (stop_loss, take_profit). Config: `pct` or `atr_mult`. Pure function. |
+| **strategy/sizing.py** | `compute_size(sizing_config, account_value?, volatility?)` → size. Config: `fixed` or `fixed_risk`. Pure function. |
+| **execution/trade_engine.py** | Trade state machine (FLAT / OPEN). **Fill rule (same bar):** SL checked before TP. `_exit_reason(bar, position)`, `initial_state()`, `enter_trade(setup)`, `manage_trade(state, bar)`. All enter/exit decisions live here. |
+| **analysis/backtest.py** | Bar-by-bar loop: fetch candles → for each bar (warmup to end) run detect_setup or (detect_event + risk + sizing → TradeSetup), then state machine; record fills and completed trades to **ledger**. Returns `(orders_last_bar, period_end, ledger)`. |
+| **core/ledger.py** | Ledger: fills (timestamp, asset, side, price, size, fee, exit_reason), completed_trades (entry_ts, exit_ts, asset, side, entry_price, exit_price, size, pnl_gross, fees). `to_dict()` for JSON export; `total_pnl_net`. |
+| **analysis/report.py** | Backtest reporting: compute performance metrics + equity curve from ledger. Outputs overall + per-asset metrics. |
+| **strategy/strategy_loader.py** | Load strategy config from YAML/JSON: `name`, `symbol`, `timeframe`, `entry` (detector_id + params), `risk`, `sizing`. `strategies_dir()` = strategy-engine/strategies/. |
+| **io/export.py** | Write `strategy_spec.json` to repo `contracts/`. v1: target_weights (legacy). v2: `orders` array; used by backtest. |
 
 ---
 
-## State Machine (trade_engine.py)
+## State Machine (execution/trade_engine.py)
 
 - **FLAT** — No open position; may accept a new setup.
 - **OPEN** — Position open; track entry, stop_loss, take_profit; evaluate exit on each bar (TP/SL hit).
@@ -58,7 +58,7 @@ State is in-memory per run (MVP); can be persisted later.
 
 ---
 
-## Setup Detectors (setups.py)
+## Setup Detectors (strategy/setups.py)
 
 - **ema_inflection_core** — Returns `Optional[EventCandidate]` (long, entry_price, features: ema_fast, ema_slow). Used by registry and by `ema_inflection` (which adds hardcoded stop/tp/size for backward compat).
 - **ema_inflection** — Returns full `TradeSetup` (backward compat when no strategy config).
@@ -133,16 +133,23 @@ strategy-engine/
 │   └── ema_inflection_v1.yaml   # example strategy config
 ├── strategy_engine/
 │   ├── __init__.py
-│   ├── data.py             # fetch 4H candles (CCXT)
-│   ├── types.py            # EventCandidate, TradeSetup, Order
-│   ├── setups.py           # detect_setup, detect_event, registry, ema_inflection
-│   ├── risk.py             # compute_stop_tp (pct / atr_mult)
-│   ├── sizing.py           # compute_size (fixed / fixed_risk)
-│   ├── trade_engine.py     # state machine, _exit_reason, enter_trade, manage_trade
-│   ├── backtest.py         # bar-by-bar loop, ledger, strategy_config → TradeSetup
-│   ├── ledger.py           # Fill, CompletedTrade, Ledger
-│   ├── strategy_loader.py  # load_strategy (YAML/JSON), strategies_dir
-│   └── export.py           # strategy_spec v1/v2 → contracts/
+│   ├── analysis/
+│   │   ├── backtest.py      # bar-by-bar loop, ledger, strategy_config → TradeSetup
+│   │   └── report.py        # performance metrics + equity curve
+│   ├── core/
+│   │   ├── ledger.py        # Fill, CompletedTrade, Ledger
+│   │   └── types.py         # EventCandidate, TradeSetup, Order
+│   ├── data/
+│   │   └── data.py          # fetch 4H candles (CCXT)
+│   ├── execution/
+│   │   └── trade_engine.py  # state machine, _exit_reason, enter_trade, manage_trade
+│   ├── io/
+│   │   └── export.py        # strategy_spec v1/v2 → contracts/
+│   └── strategy/
+│       ├── setups.py        # detect_setup, detect_event, registry, ema_inflection
+│       ├── risk.py          # compute_stop_tp (pct / atr_mult)
+│       ├── sizing.py        # compute_size (fixed / fixed_risk)
+│       └── strategy_loader.py  # load_strategy (YAML/JSON), strategies_dir
 └── scripts/
     └── run_backtest.py     # CLI: --strategy, --ledger, backtest + export v2
 ```

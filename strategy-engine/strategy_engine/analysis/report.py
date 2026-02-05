@@ -7,7 +7,7 @@ from math import sqrt
 from pathlib import Path
 from typing import Any, Iterable, List, Optional, Union
 
-from .ledger import CompletedTrade, Ledger
+from ..core.ledger import CompletedTrade, Ledger
 
 
 def _iso(ts: Optional[datetime]) -> Optional[str]:

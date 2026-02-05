@@ -6,7 +6,7 @@ from typing import Callable, Dict, Optional, Any
 
 import pandas as pd
 
-from .types import EventCandidate, TradeSetup
+from ..core.types import EventCandidate, TradeSetup
 
 # EMA spans for inflection detector
 EMA_FAST_SPAN = 8
