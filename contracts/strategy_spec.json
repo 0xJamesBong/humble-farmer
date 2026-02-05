@@ -1,12 +1,7 @@
 {
-  "version": 1,
-  "generated_at_utc": "2026-02-04T16:12:52Z",
-  "period_4h_end_utc": "2026-02-04T16:00:00Z",
+  "version": 2,
+  "generated_at_utc": "2026-02-05T11:38:14Z",
+  "period_4h_end_utc": "2026-02-05T08:00:00Z",
   "leverage_allowed": false,
-  "target_weights": {
-    "USDT": 0.4,
-    "SOL": 0.2,
-    "WBTC": 0.2,
-    "WETH": 0.2
-  }
+  "orders": []
 }

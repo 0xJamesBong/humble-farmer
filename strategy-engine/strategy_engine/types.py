@@ -1,9 +1,21 @@
-"""Primitives for mid-frequency trade engine: TradeSetup (proposal), Order (execution contract)."""
+"""Primitives for mid-frequency trade engine: EventCandidate, TradeSetup (proposal), Order (execution contract)."""
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Literal
+from dataclasses import dataclass, field
+from typing import Any, Dict, Literal
+
+
+@dataclass(frozen=True)
+class EventCandidate:
+    """Detector output: event + features. Risk/sizing modules produce stop, tp, size; assembly builds TradeSetup."""
+
+    asset: str
+    side: Literal["long", "short"]
+    entry_price: float
+    features: Dict[str, Any] = field(default_factory=dict)  # e.g. atr, ema_fast, ema_slow
+    invalidation: str = ""
+    confidence: float = 0.0
 
 
 @dataclass(frozen=True)

@@ -1,11 +1,15 @@
 """
 Trade state machine: FLAT <-> OPEN. Setup proposes; state machine decides enter/exit.
 All capital decisions live here; setup detectors never open/close.
+
+Fill rule (same bar): If both stop_loss and take_profit could be hit in one bar,
+we check STOP LOSS before TAKE PROFIT. So we exit on SL first (conservative).
+Backtest and live must use this same rule for identical execution semantics.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from typing import List, Literal, Optional, Tuple
 
 import pandas as pd
@@ -37,6 +41,26 @@ def initial_state() -> TradeState:
     return TradeState(status="FLAT", position=None)
 
 
+def _exit_reason(bar: pd.Series, position: Position) -> Optional[Literal["sl", "tp"]]:
+    """
+    Deterministic exit reason for current bar. SL is checked before TP (same-bar rule).
+    Returns "sl", "tp", or None if no exit this bar.
+    """
+    high = float(bar["high"])
+    low = float(bar["low"])
+    if position.side == "long":
+        if low <= position.stop_loss:
+            return "sl"
+        if high >= position.take_profit:
+            return "tp"
+    else:
+        if high >= position.stop_loss:
+            return "sl"
+        if low <= position.take_profit:
+            return "tp"
+    return None
+
+
 def enter_trade(setup: TradeSetup) -> Tuple[List[Order], TradeState]:
     """
     If we are FLAT and accept setup: emit entry order, state -> OPEN.
@@ -64,60 +88,24 @@ def enter_trade(setup: TradeSetup) -> Tuple[List[Order], TradeState]:
 
 def manage_trade(state: TradeState, bar: pd.Series) -> Tuple[List[Order], TradeState]:
     """
-    Given OPEN state and current bar (OHLC), check TP/SL. Emit exit order if hit; state -> FLAT.
-    bar must have high, low, close. Long: TP when high >= take_profit, SL when low <= stop_loss.
-    Short: TP when low <= take_profit, SL when high >= stop_loss.
+    Given OPEN state and current bar (OHLC), apply fill rule and exit if SL or TP hit.
+    Uses _exit_reason (SL checked before TP same bar). Emit exit order if hit; state -> FLAT.
     """
     if state.status != "OPEN" or state.position is None:
         return [], state
 
     pos = state.position
-    high = float(bar["high"])
-    low = float(bar["low"])
+    reason = _exit_reason(bar, pos)
+    if reason is None:
+        return [], state
 
-    if pos.side == "long":
-        if low <= pos.stop_loss:
-            # Stop out
-            exit_order = Order(
-                asset=pos.asset,
-                side="sell",
-                entry=pos.entry,
-                stop_loss=pos.stop_loss,
-                take_profit=pos.take_profit,
-                size=pos.size,
-            )
-            return [exit_order], TradeState(status="FLAT", position=None)
-        if high >= pos.take_profit:
-            # Take profit
-            exit_order = Order(
-                asset=pos.asset,
-                side="sell",
-                entry=pos.entry,
-                stop_loss=pos.stop_loss,
-                take_profit=pos.take_profit,
-                size=pos.size,
-            )
-            return [exit_order], TradeState(status="FLAT", position=None)
-    else:
-        if high >= pos.stop_loss:
-            exit_order = Order(
-                asset=pos.asset,
-                side="buy",
-                entry=pos.entry,
-                stop_loss=pos.stop_loss,
-                take_profit=pos.take_profit,
-                size=pos.size,
-            )
-            return [exit_order], TradeState(status="FLAT", position=None)
-        if low <= pos.take_profit:
-            exit_order = Order(
-                asset=pos.asset,
-                side="buy",
-                entry=pos.entry,
-                stop_loss=pos.stop_loss,
-                take_profit=pos.take_profit,
-                size=pos.size,
-            )
-            return [exit_order], TradeState(status="FLAT", position=None)
-
-    return [], state
+    exit_side = "sell" if pos.side == "long" else "buy"
+    exit_order = Order(
+        asset=pos.asset,
+        side=exit_side,
+        entry=pos.entry,
+        stop_loss=pos.stop_loss,
+        take_profit=pos.take_profit,
+        size=pos.size,
+    )
+    return [exit_order], TradeState(status="FLAT", position=None)

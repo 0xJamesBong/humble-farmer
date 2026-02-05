@@ -1,0 +1,673 @@
+{
+  "fills": [
+    {
+      "timestamp": "2025-08-27T08:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 205.01,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-08-27T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 206.4,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "tp"
+    },
+    {
+      "timestamp": "2025-09-02T20:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 209.65,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-09-04T04:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 206.68,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-09-05T08:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 206.67,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-09-05T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 203.56,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-09-07T20:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 206.35,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-09-08T08:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 214.28,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "tp"
+    },
+    {
+      "timestamp": "2025-09-17T20:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 244.84,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-09-18T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 248.36,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "tp"
+    },
+    {
+      "timestamp": "2025-09-28T20:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 210.83,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-09-29T04:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 208.95,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-10-13T20:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 208.69,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-10-14T00:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 205.71,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-10-20T00:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 191.21,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-10-20T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 188.83,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-10-21T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 196.22,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-10-21T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 193.96,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-10-23T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 191.15,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-10-24T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 189.45,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "tp"
+    },
+    {
+      "timestamp": "2025-11-09T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 166.15,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-11-10T00:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 168.12,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-11-20T04:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 143.8,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-11-20T08:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 142.12,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-11-24T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 137.24,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-11-25T08:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 136.29,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-12-02T20:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 138.68,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-12-03T04:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 141.88,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "tp"
+    },
+    {
+      "timestamp": "2025-12-08T08:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 138.37,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-12-08T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 135.55,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-12-09T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 138.45,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-12-09T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 142.1,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "tp"
+    },
+    {
+      "timestamp": "2025-12-12T04:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 139.09,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-12-12T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 133.49,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-12-20T08:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 126.47,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-12-21T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 125.05,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-12-21T20:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 126.03,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-12-23T04:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 124.19,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2025-12-27T20:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 124.73,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2025-12-29T00:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 128.58,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "tp"
+    },
+    {
+      "timestamp": "2026-01-11T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 138.43,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2026-01-12T00:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 142.54,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "tp"
+    },
+    {
+      "timestamp": "2026-01-16T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 144.18,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2026-01-18T00:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 142.83,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    },
+    {
+      "timestamp": "2026-01-27T20:00:00+00:00",
+      "asset": "SOL",
+      "side": "buy",
+      "price": 127.19,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": null
+    },
+    {
+      "timestamp": "2026-01-28T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "sell",
+      "price": 126.01,
+      "size": 1.0,
+      "fee": 0.0,
+      "exit_reason": "sl"
+    }
+  ],
+  "completed_trades": [
+    {
+      "entry_ts": "2025-08-27T08:00:00+00:00",
+      "exit_ts": "2025-08-27T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 205.01,
+      "exit_price": 206.4,
+      "size": 1.0,
+      "pnl_gross": 1.3900000000000148,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-09-02T20:00:00+00:00",
+      "exit_ts": "2025-09-04T04:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 209.65,
+      "exit_price": 206.68,
+      "size": 1.0,
+      "pnl_gross": -2.969999999999999,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-09-05T08:00:00+00:00",
+      "exit_ts": "2025-09-05T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 206.67,
+      "exit_price": 203.56,
+      "size": 1.0,
+      "pnl_gross": -3.109999999999985,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-09-07T20:00:00+00:00",
+      "exit_ts": "2025-09-08T08:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 206.35,
+      "exit_price": 214.28,
+      "size": 1.0,
+      "pnl_gross": 7.930000000000007,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-09-17T20:00:00+00:00",
+      "exit_ts": "2025-09-18T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 244.84,
+      "exit_price": 248.36,
+      "size": 1.0,
+      "pnl_gross": 3.5200000000000102,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-09-28T20:00:00+00:00",
+      "exit_ts": "2025-09-29T04:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 210.83,
+      "exit_price": 208.95,
+      "size": 1.0,
+      "pnl_gross": -1.8800000000000239,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-10-13T20:00:00+00:00",
+      "exit_ts": "2025-10-14T00:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 208.69,
+      "exit_price": 205.71,
+      "size": 1.0,
+      "pnl_gross": -2.9799999999999898,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-10-20T00:00:00+00:00",
+      "exit_ts": "2025-10-20T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 191.21,
+      "exit_price": 188.83,
+      "size": 1.0,
+      "pnl_gross": -2.3799999999999955,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-10-21T12:00:00+00:00",
+      "exit_ts": "2025-10-21T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 196.22,
+      "exit_price": 193.96,
+      "size": 1.0,
+      "pnl_gross": -2.259999999999991,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-10-23T16:00:00+00:00",
+      "exit_ts": "2025-10-24T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 191.15,
+      "exit_price": 189.45,
+      "size": 1.0,
+      "pnl_gross": -1.700000000000017,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-11-09T16:00:00+00:00",
+      "exit_ts": "2025-11-10T00:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 166.15,
+      "exit_price": 168.12,
+      "size": 1.0,
+      "pnl_gross": 1.9699999999999989,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-11-20T04:00:00+00:00",
+      "exit_ts": "2025-11-20T08:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 143.8,
+      "exit_price": 142.12,
+      "size": 1.0,
+      "pnl_gross": -1.6800000000000068,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-11-24T16:00:00+00:00",
+      "exit_ts": "2025-11-25T08:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 137.24,
+      "exit_price": 136.29,
+      "size": 1.0,
+      "pnl_gross": -0.950000000000017,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-12-02T20:00:00+00:00",
+      "exit_ts": "2025-12-03T04:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 138.68,
+      "exit_price": 141.88,
+      "size": 1.0,
+      "pnl_gross": 3.1999999999999886,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-12-08T08:00:00+00:00",
+      "exit_ts": "2025-12-08T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 138.37,
+      "exit_price": 135.55,
+      "size": 1.0,
+      "pnl_gross": -2.819999999999993,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-12-09T12:00:00+00:00",
+      "exit_ts": "2025-12-09T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 138.45,
+      "exit_price": 142.1,
+      "size": 1.0,
+      "pnl_gross": 3.6500000000000057,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-12-12T04:00:00+00:00",
+      "exit_ts": "2025-12-12T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 139.09,
+      "exit_price": 133.49,
+      "size": 1.0,
+      "pnl_gross": -5.599999999999994,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-12-20T08:00:00+00:00",
+      "exit_ts": "2025-12-21T12:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 126.47,
+      "exit_price": 125.05,
+      "size": 1.0,
+      "pnl_gross": -1.4200000000000017,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-12-21T20:00:00+00:00",
+      "exit_ts": "2025-12-23T04:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 126.03,
+      "exit_price": 124.19,
+      "size": 1.0,
+      "pnl_gross": -1.8400000000000034,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2025-12-27T20:00:00+00:00",
+      "exit_ts": "2025-12-29T00:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 124.73,
+      "exit_price": 128.58,
+      "size": 1.0,
+      "pnl_gross": 3.8500000000000085,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2026-01-11T12:00:00+00:00",
+      "exit_ts": "2026-01-12T00:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 138.43,
+      "exit_price": 142.54,
+      "size": 1.0,
+      "pnl_gross": 4.109999999999985,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2026-01-16T16:00:00+00:00",
+      "exit_ts": "2026-01-18T00:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 144.18,
+      "exit_price": 142.83,
+      "size": 1.0,
+      "pnl_gross": -1.3499999999999943,
+      "fees": 0.0
+    },
+    {
+      "entry_ts": "2026-01-27T20:00:00+00:00",
+      "exit_ts": "2026-01-28T16:00:00+00:00",
+      "asset": "SOL",
+      "side": "long",
+      "entry_price": 127.19,
+      "exit_price": 126.01,
+      "size": 1.0,
+      "pnl_gross": -1.1799999999999926,
+      "fees": 0.0
+    }
+  ]
+}

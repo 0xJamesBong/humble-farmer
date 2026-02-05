@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from datetime import datetime, timezone
-from typing import Dict, List, Union
+from typing import Dict, List
 
 from .types import Order
 
@@ -18,28 +18,6 @@ def repo_root() -> Path:
 def contracts_dir() -> Path:
     """contracts/ directory at repo root."""
     return repo_root() / "contracts"
-
-
-def export_strategy_spec(
-    target_weights: Dict[str, float],
-    period_4h_end_utc: datetime,
-    leverage_allowed: bool = False,
-    output_path: Path | None = None,
-) -> Path:
-    """Build StrategySpec v1 (target_weights) and write to contracts/strategy_spec.json. Kept for compatibility."""
-    now = datetime.now(timezone.utc)
-    spec = {
-        "version": 1,
-        "generated_at_utc": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "period_4h_end_utc": period_4h_end_utc.strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "leverage_allowed": leverage_allowed,
-        "target_weights": target_weights,
-    }
-    path = output_path if output_path is not None else contracts_dir() / "strategy_spec.json"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with open(path, "w") as f:
-        json.dump(spec, f, indent=2)
-    return path
 
 
 def export_strategy_spec_v2(
