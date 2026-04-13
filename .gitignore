@@ -18,3 +18,14 @@ Thumbs.db
 *.log
 *.tmp
 .cache/
+
+# FreqTrade runtime
+freqtrade/user_data/data/
+freqtrade/user_data/logs/
+freqtrade/user_data/*.sqlite
+freqtrade/user_data/backtest_results/
+freqtrade/user_data/hyperopt_results/
+freqtrade/user_data/freqaimodels/
+freqtrade/user_data/plot/
+out/*.json
+out/*.png

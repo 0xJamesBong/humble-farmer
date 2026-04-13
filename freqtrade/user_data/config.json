@@ -1,0 +1,63 @@
+{
+  "$schema": "https://schema.freqtrade.io/schema.json",
+  "max_open_trades": 3,
+  "stake_currency": "USDT",
+  "stake_amount": "unlimited",
+  "tradable_balance_ratio": 0.99,
+  "fiat_display_currency": "USD",
+  "dry_run": true,
+  "dry_run_wallet": 10000,
+  "cancel_open_orders_on_exit": false,
+  "trading_mode": "spot",
+  "margin_mode": "",
+  "unfilledtimeout": {
+    "entry": 10,
+    "exit": 10,
+    "exit_timeout_count": 0,
+    "unit": "minutes"
+  },
+  "entry_pricing": {
+    "price_side": "same",
+    "use_order_book": true,
+    "order_book_top": 1,
+    "price_last_balance": 0.0,
+    "check_depth_of_market": { "enabled": false, "bids_to_ask_delta": 1 }
+  },
+  "exit_pricing": {
+    "price_side": "same",
+    "use_order_book": true,
+    "order_book_top": 1
+  },
+  "exchange": {
+    "name": "binance",
+    "key": "",
+    "secret": "",
+    "ccxt_config": {},
+    "ccxt_async_config": {},
+    "pair_whitelist": ["BTC/USDT", "ETH/USDT", "SOL/USDT"],
+    "pair_blacklist": ["BNB/.*"]
+  },
+  "pairlists": [
+    {
+      "method": "StaticPairList",
+      "pairlist": ["BTC/USDT", "ETH/USDT", "SOL/USDT"]
+    }
+  ],
+  "telegram": { "enabled": false, "token": "", "chat_id": "" },
+  "api_server": {
+    "enabled": true,
+    "listen_ip_address": "0.0.0.0",
+    "listen_port": 8080,
+    "verbosity": "error",
+    "enable_openapi": false,
+    "jwt_secret_key": "080662500f53ead18f4ce507a26c8ce6ab9a8bd16085e8f573d42896691049db",
+    "ws_token": "b54b1cec934e0cfdc303b512603da6bb3915e20a6727e53d",
+    "CORS_origins": ["http://localhost:8081"],
+    "username": "freqtrader",
+    "password": "changeme"
+  },
+  "bot_name": "humble-farmer",
+  "initial_state": "running",
+  "force_entry_enable": false,
+  "internals": { "process_throttle_secs": 5 }
+}

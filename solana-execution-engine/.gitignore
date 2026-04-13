@@ -1,5 +1,0 @@
-# Rust build output
-target/
-
-# Cargo lock: optional. Uncomment to ignore (libs often ignore; bins often commit).
-# Cargo.lock
